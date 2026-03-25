@@ -1,0 +1,17 @@
+# Julia
+Manifest.toml
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Reference materials (local copies, not version-controlled)
+refs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*~
+.vscode/
