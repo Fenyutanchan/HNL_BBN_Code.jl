@@ -1,17 +1,16 @@
 # HNL-BBN Reproduction
 
-Reproducing all derivations and figures from "BBN constraints on Heavy Neutral Leptons with Dark Decay Channels: A comprehensive analysis" (Dev, Wu, Xu).
+Reproducing all derivations and figures in [note](refs/note_from_Xun-Jie.pdf) with a clear, modular, and reusable codebase.
 
 ## Stack
 
 - **Julia** with CairoMakie for plotting
-- **Jupyter** (IJulia) notebooks for interactive exploration
+- **Jupyter** (julia-vscode) notebooks for interactive exploration
 - **DifferentialEquations.jl** for ODE solving
-- **QuadGK.jl** for numerical integration
 
 ## Shared module
 
-`src/HNLBBNTools.jl` — physical constants, cosmology helpers, thermal rates, and HNL physics functions used across notebooks.
+`src/HNL_BBN_Code.jl` — physical constants, cosmology helpers, thermal rates, and HNL physics functions used across notebooks.
 
 ## Notebooks
 
@@ -25,6 +24,10 @@ Reproducing all derivations and figures from "BBN constraints on Heavy Neutral L
 | 06 | [nu-gamma-splitting](notebooks/06-nu-gamma-splitting.ipynb) | App B | B.1–B.4 | — | [ ] |
 | 07 | [np-conversion](notebooks/07-np-conversion.ipynb) | App C, D | C.1–C.3, D.1–D.6 | — | [ ] |
 | 08 | [dark-decay](notebooks/08-dark-decay.ipynb) | §2.2 | TBD | — | [ ] |
+
+## References
+
+- [`refs/code-2507.12270`](refs/code-2507.12270) — code from our previous work [arXiv:2507.12270](https://arxiv.org/abs/2507.12270).
 
 ## Setup
 

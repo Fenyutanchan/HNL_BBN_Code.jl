@@ -1,3 +1,8 @@
+name = "HNL_BBN_Code"
+uuid = "61e6fb31-eb85-4df3-9aeb-927a3559f0ed"
+version = "0.1.0"
+authors = ["Quan-feng WU <wuquanfeng@ihep.ac.cn>"]
+
 [deps]
 CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
 DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
