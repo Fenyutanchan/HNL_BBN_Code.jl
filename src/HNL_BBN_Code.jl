@@ -13,4 +13,6 @@ include("utilities.jl")
 
 include("N_relativistic_species.jl")
 
+include("HNL_data.jl")
+
 end # module
