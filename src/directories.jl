@@ -16,5 +16,6 @@ data_directory = joinpath(@__DIR__, "data") |> ensure_directory
 
 external_data_directory = joinpath(data_directory, "ext") |> ensure_directory
 output_data_directory = joinpath(data_directory, "out") |> ensure_directory
+integrals_directory = joinpath(output_data_directory, "integrals") |> ensure_directory
 
 plot_directory = joinpath(@__DIR__, "plots") |> ensure_directory

@@ -97,60 +97,6 @@ function cα(α::Int, T::EnergyUnit)
     return _cα_interps[α](log_T_in_MeV)
 end
 
-# To AI agent:
-# We can apply the implementation in `refs/code-2507.12270` for computing ρ_ℓ and ρ_ν.
-# By Quan-feng Wu, 2026-03-26
-
-# ─── Energy density of charged lepton ℓ_α ───
-
-"""
-    ρ_ℓ(α::Int, T::EnergyUnit) -> EnergyUnit (dim 4)
-
-Energy density of charged lepton ℓ_α (particle + antiparticle) at temperature T.
-Uses numerical integration for arbitrary m_ℓ/T ratio.
-
-ρ_ℓ = (4 / 2π²) ∫₀^∞ u² √(u² + x²) / (e^√(u²+x²) + 1) du × T⁴
-
-where x = m_ℓ/T, and g_ℓ = 4 (2 spin × particle/antiparticle).
-"""
-function ρ_ℓ(α::Int, T::EnergyUnit)
-    x = EUval(m_ℓ[α] / T)  # m_ℓ / T, dimensionless
-
-    # For very heavy leptons, Boltzmann-suppressed
-    x > 50 && return zero(EU) * EU(1, 3)  # return 0 with dim 4
-
-    # Numerical integration via simple Gauss-Laguerre-like quadrature
-    # Transform: u from 0 to ∞
-    # Use adaptive Simpson or simple trapezoidal on [0, u_max]
-    u_max = max(30.0, 3 * x + 30.0)
-    N_pts = 500
-    du = u_max / N_pts
-
-    integral = 0.0
-    for i in 1:N_pts
-        u = (i - 0.5) * du
-        E_u = sqrt(u^2 + x^2)
-        integral += u^2 * E_u / (exp(E_u) + 1) * du
-    end
-
-    g_ℓ = 4.0  # 2 spin × 2 (particle + antiparticle)
-    return EU(g_ℓ / (2π^2) * integral, 0) * T^4
-end
-
-# ─── Energy density of neutrino ν_α ───
-
-"""
-    ρ_ν(T::EnergyUnit) -> EnergyUnit (dim 4)
-
-Energy density of a single neutrino species (ν_α + ν̄_α) at temperature T.
-Massless approximation: ρ_ν = (7/8) × (2/g_total) × (π²/30) × T⁴
-
-g_ν = 2 (left-handed ν + right-handed ν̄), so ρ_ν = 2 × (7/8) × (π²/30) × T⁴
-"""
-function ρ_ν(T::EnergyUnit)
-    return EU(2 * (7 / 8) * π^2 / 30, 0) * T^4
-end
-
 # ─── Effective potential V_α ───
 
 export Vα
@@ -178,7 +124,7 @@ d_α = (8√2 / 3) × (ρ_{ν_α}/m_Z² + ρ_{ℓ_α}/m_W²) / (c_α G_F T⁴)
 function dα(α::Int, T::EnergyUnit)
     c = cα(α, T)
     rho_term = ρ_ν(T) / m_Z^2 + ρ_ℓ(α, T) / m_W^2
-    return (8sqrt(2) / 3) * EUval(rho_term / (G_F * T^4)) / c
+    return (8sqrt(2) / 3) * rho_term / (c * G_F * T^4)
 end
 
 # ─── Production rate Γ_α ───
@@ -190,7 +136,5 @@ export Γα
 Active neutrino production rate Γ_α = c_α G_F² p T⁴.  Eq. (2.3).
 """
 function Γα(α::Int, T::EnergyUnit, p::EnergyUnit)
-    return EU(cα(α, T), 0) * G_F^2 * p * T^4
+    return cα(α, T) * G_F^2 * p * T^4
 end
-
-export ρ_ℓ, ρ_ν

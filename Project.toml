@@ -3,18 +3,23 @@ uuid = "61e6fb31-eb85-4df3-9aeb-927a3559f0ed"
 version = "0.1.0"
 authors = ["Quan-feng WU <wuquanfeng@ihep.ac.cn>"]
 
+[workspace]
+projects = ["deps"]
+
 [deps]
 CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
 DataInterpolations = "82cc6244-b520-54b8-b5a6-8a565e85f1d0"
 DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
 DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
+JLD2 = "033835bb-8acc-5ee8-8aae-3f567f8a3819"
 LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
 NaturalUnits = "61adfb09-12d1-4e3c-91b1-54bf68ca093d"
+
+[sources]
+NaturalUnits = {rev = "main", url = "https://github.com/Fenyutanchan/NaturalUnits.jl.git"}
 
 [compat]
 DataInterpolations = "8.9.0"
 DelimitedFiles = "1.9.1"
+JLD2 = "0.6.3"
 NaturalUnits = "0.1.0"
-
-[sources]
-NaturalUnits = {url = "https://github.com/Fenyutanchan/NaturalUnits.jl.git", rev = "main"}

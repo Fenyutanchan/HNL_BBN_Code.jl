@@ -13,6 +13,7 @@ include("directories.jl")
 include("utilities.jl")
 
 include("N_relativistic_species.jl")
+include("energy_densities.jl")
 
 include("thermal_rates.jl")
 
