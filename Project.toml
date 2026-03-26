@@ -5,5 +5,16 @@ authors = ["Quan-feng WU <wuquanfeng@ihep.ac.cn>"]
 
 [deps]
 CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+DataInterpolations = "82cc6244-b520-54b8-b5a6-8a565e85f1d0"
+DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
 DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
 LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
+NaturalUnits = "61adfb09-12d1-4e3c-91b1-54bf68ca093d"
+
+[compat]
+DataInterpolations = "8.9.0"
+DelimitedFiles = "1.9.1"
+NaturalUnits = "0.1.0"
+
+[sources]
+NaturalUnits = {url = "https://github.com/Fenyutanchan/NaturalUnits.jl.git", rev = "main"}

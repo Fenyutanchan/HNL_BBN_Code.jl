@@ -3,6 +3,9 @@
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
 
+export data_directory, external_data_directory, output_data_directory
+export plot_directory
+
 ensure_directory(directory::AbstractString) = isdir(directory) ? abspath(directory) :
     begin
         ispath(directory) && rm(directory; recursive=true, force=true)
